@@ -5,11 +5,72 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true;
 }
+
+void AAuraPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
+}
+
+void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility,false,CursorHit);
+	if(!CursorHit.bBlockingHit) return;
+
+	LastActor = ThisActor;
+	ThisActor = CursorHit.GetActor();
+
+
+	/*
+	 *对于光标射线检测，有以下几种情况
+	 * A. LastActor 和 ThisActor 都为 null
+	 *		- 不做处理
+	 * B. LastActor 为 NULL，ThisActor 有效
+	 *		- 高亮 ThisActor
+	 * C. LastActor 有效， ThisActor 为 NULL
+	 *		- 取消高亮 LastActor
+	 * D. LastActor 和 ThisActor都有效，但是两个不是同一个
+	 *		-取消高亮 LastActor，高亮ThisActor
+	 * E. LastActor 和 ThisActor都有效，并且是同一个
+	 *		- 不做处理
+	 */
+
+
+
+	if(LastActor == nullptr)
+	{
+		if(ThisActor != nullptr)
+		{
+			ThisActor->HighlightActor();
+		}
+	}
+	else
+	{
+		if(ThisActor == nullptr)
+		{
+			LastActor->UnHighlightActor();
+		}
+		else
+		{
+			if(LastActor != ThisActor)
+			{
+				LastActor->UnHighlightActor();
+				ThisActor->HighlightActor();
+			}
+		}
+	}
+	
+	
+}
+
 
 void AAuraPlayerController::BeginPlay()
 {
@@ -58,3 +119,5 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 	}
 	
 }
+
+
