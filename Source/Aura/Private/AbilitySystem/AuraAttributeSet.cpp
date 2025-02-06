@@ -9,8 +9,8 @@ UAuraAttributeSet::UAuraAttributeSet()
 {
 	InitHealth(50.f);
 	InitMaxHealth(100.f);
-	InitMana(25.f);
-	InitMaxMana(50.f);
+	InitMana(50.f);
+	InitMaxMana(100.f);
 }
 
 //GetLifetimeReplicatedProps   将需要复制的Properties（UPROPERTY中标记为Replicated或replicatedUsing=）真正添加进复制列表。（而UPROPERTY中的标记仅用于反射）
