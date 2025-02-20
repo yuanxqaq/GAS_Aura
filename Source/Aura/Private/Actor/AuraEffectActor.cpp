@@ -24,11 +24,11 @@ void AAuraEffectActor::BeginPlay()
 
 
 //
-void AAuraEffectActor::ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEffect> GameplayEffectClass)
+void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass)
 {
 
 	//使用GetAbilitySystemComponent能够直接获取到相应的ASC
-	UAbilitySystemComponent* TargetASC =  UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Target);
+	UAbilitySystemComponent* TargetASC =  UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
 	if (nullptr == TargetASC) return;
 
 	check(GameplayEffectClass);
