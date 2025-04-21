@@ -5,7 +5,8 @@
 
 void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 {
-	
+	/** Called on server whenever a GE is applied to self. This includes instant and duration based GEs. */
+	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this,&UAuraAbilitySystemComponent::EffectApplied);
 	
 }
 

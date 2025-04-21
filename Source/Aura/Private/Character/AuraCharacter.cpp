@@ -4,6 +4,7 @@
 #include "Character/AuraCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/AuraPlayerController.h"
 #include "Player/AuraPlayerState.h"
@@ -40,6 +41,7 @@ void AAuraCharacter::InitAbilityActorInfo()
 	{
 		AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this );
 		AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
+		Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 		AttributeSet = AuraPlayerState->GetAttributeSet();
 
 		//InitOverlay,此时PlayerController,PlayerState,ASC,AS都初始化好了,可以将这些数据与WidgetController绑定
