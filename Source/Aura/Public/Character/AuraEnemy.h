@@ -26,10 +26,16 @@ public:
 	virtual void UnHighlightActor() override;
 	//End Enemy Interface
 
+	virtual int32 GetPlayerLevel() override;
+
 protected:
 
 	virtual void BeginPlay() override;
 
 	virtual void InitAbilityActorInfo() override;
+
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	int32 Level = 1;
 
 };
