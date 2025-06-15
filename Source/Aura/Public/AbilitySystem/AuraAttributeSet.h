@@ -55,6 +55,14 @@ struct FEffectProperties
 
 };
 
+// 函数指针  ----- 有点抽象，得细看   https://www.udemy.com/course/unreal-engine-5-gas-top-down-rpg/learn/lecture/39784236#overview     95节课
+
+
+// typepedef是特定于FGameplayAttribute（）签名，但TStaticFunPtr是通用的任何签名选择
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFuncPtr；
+template<class T>
+using TStaticFuncPtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
+
 
 UCLASS()
 class AURA_API UAuraAttributeSet : public UAttributeSet
@@ -69,6 +77,9 @@ public:
 
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 
+
+	TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
+	
 
 	/*
 	 * Primary Attributes

@@ -18,5 +18,6 @@ void UAuraWidgetController::BroadcastInitialValues()
 
 void UAuraWidgetController::BindCallbacksToDepencedencies()
 {
+
 	
 }
