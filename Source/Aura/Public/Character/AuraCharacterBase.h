@@ -34,6 +34,8 @@ protected:
 
 	virtual void InitAbilityActorInfo();
 
+
+
 	UPROPERTY(BlueprintReadOnly,EditAnywhere,Category="Attributes")
 	TSubclassOf<UGameplayEffect> DefaultPrimaryAttributes;
 
@@ -46,4 +48,8 @@ protected:
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
 	void InitializeDefaultAttributes() const;
 
+	void AddCharacterAbilities();
+
+	UPROPERTY(EditAnywhere,Category="Ablities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 };

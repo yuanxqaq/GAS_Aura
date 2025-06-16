@@ -22,8 +22,10 @@ public:
 
 	FEffectAssetTags EffectAssetTags;
 
+	void AddCharacterAblities(TArray<TSubclassOf<UGameplayAbility>> StartupAbilities);
 protected:
 
 	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
+
 	
 };
