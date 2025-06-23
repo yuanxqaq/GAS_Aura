@@ -69,5 +69,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USplineComponent> Spline;
+
+	void AutoRun();
+	
 	//鼠标移动相关 END
 };
